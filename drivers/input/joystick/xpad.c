@@ -499,7 +499,7 @@ static void xpadone_process_packet(struct usb_xpad *xpad,
         printk("xpadone: %02x%02x%02x%02x\n",
                data[0], data[1], data[2], data[3]);
 
-        if (data[1] != 0x20)
+        if (data[0] != 0x20)
           return;
 
         printk("xpadone buttons: %02x%02x\n",
