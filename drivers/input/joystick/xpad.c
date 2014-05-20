@@ -496,9 +496,6 @@ static void xpadone_process_packet(struct usb_xpad *xpad,
 {
 	struct input_dev *dev = xpad->dev;
 
-        printk("xpadone: %02x%02x%02x%02x\n",
-               data[0], data[1], data[2], data[3]);
-
         if (data[0] != 0x20)
           return;
 
@@ -507,8 +504,8 @@ static void xpadone_process_packet(struct usb_xpad *xpad,
 
 	/* sync/start/back buttons */
 	input_report_key(dev, BTN_MODE,	  data[4] & 0x01);
-	input_report_key(dev, BTN_START,  data[4] & 0x02);
-	input_report_key(dev, BTN_SELECT, data[4] & 0x04);
+	input_report_key(dev, BTN_START,  data[4] & 0x04);
+	input_report_key(dev, BTN_SELECT, data[4] & 0x08);
 
 	/* buttons A,B,X,Y */
 	input_report_key(dev, BTN_A,	data[4] & 0x10);
